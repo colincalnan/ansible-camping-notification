@@ -20,7 +20,7 @@ Insert your Twilio `account_sid` and `auth_token` in the `/camping/defaults/main
 Inser your search criteria in the `/camping/defaults/main.yml` file.
 
 #### campsites
-Add your campground ID's, you can get these from the camping API
+Add your campground ID's, you can get these from the camping API at https://bccrdr.usedirect.com
 
 For example searching for Bear Creek
 
