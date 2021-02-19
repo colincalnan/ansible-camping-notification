@@ -58,3 +58,6 @@ The date is hardcoded to today's date in the bccrdr.usedirect.combody.json.j2` f
 
 ## Can I customize the message?
 Yes, the message can be customized in `/templates/message.j2` 
+
+## What's the bc_camping.py file for
+That was where the original inspiration came from and I tinkered with it a little to get it working. I've left it here so you can play with it also.
