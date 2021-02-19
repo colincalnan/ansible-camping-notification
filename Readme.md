@@ -8,10 +8,12 @@ Built with help from: https://github.com/hugsy/stuff/blob/ad6a345ab9e739d76cf5e6
 ## How does it work?
 It's an ansible playbook, so you'll need ansible. It could be imported into AWX and run on a schedule also.
 
+`$ ansible-playbook camping.yml`
+
 ## Step 1 - Install
 Get all the libraries installed
 
-`pip install`
+`$ pip install`
 
 ## Step 2 - Credentials
 Insert your Twilio `account_sid` and `auth_token` in the `/camping/defaults/main.yml`. You'll need a Twilio account with a purchased phone number.
@@ -49,6 +51,7 @@ This returns an object - `PlaceId` is the ID you want
 
 #### number_of_nights
 Self explanatory
+
 
 ## What about the dates?
 The date is hardcoded to today's date in the bccrdr.usedirect.combody.json.j2` file. You could modify it there or else add a new variable.
