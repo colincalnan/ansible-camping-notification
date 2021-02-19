@@ -1,0 +1,7 @@
+---
+#
+- name: Do the camping things
+  hosts: localhost
+  roles:
+    - camping
+  gather_facts: no

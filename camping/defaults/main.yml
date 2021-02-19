@@ -1,0 +1,13 @@
+---
+campsites:
+  - 696
+  # - 7
+  # - 35
+  # - 49
+  # - 57
+  # - 73
+number_of_nights: 4
+twilio_account_sid: 
+twilio_auth_token: 
+twilio_from_number: "+17787713962"
+twilio_to_number: "+17782324787"

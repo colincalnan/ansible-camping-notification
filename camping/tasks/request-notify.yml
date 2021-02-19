@@ -1,0 +1,44 @@
+---
+- debug:
+    msg: "Campsites: {{ campsites }}. Number of nights: {{ number_of_nights }}."
+
+- name: Get available stuff
+  uri:
+    url: 'https://bccrdr.usedirect.com/rdr/rdr/search/place'
+    method: POST
+    headers: 
+      Content-Type: "application/json;charset=utf-8"
+    status_code: 200
+    validate_certs: no
+    body: "{{ lookup('template','templates/body.json.j2') | to_nice_json }}"
+    body_format: json
+  register: response
+  delegate_to: localhost
+
+- name: debugging
+  debug:
+    msg: "Response: {{ response }}"
+
+- name: set some facts
+  block:
+    - name: "set facts"
+      set_fact:
+        twilio_message: "{{ lookup('template', 'templates/message.j2') }}"
+      when: item.value.Available is true
+      with_items: "{{ response.json.SelectedPlace.Facilities | dict2items }}"
+  when: response.json.SelectedPlace.Facilities is defined
+
+- name: twilio message
+  debug:
+    msg: "{{ twilio_message }}"
+  when: twilio_message is defined
+
+- name: Send twilio message
+  community.general.twilio:
+    msg: "{{ twilio_message }}"
+    account_sid: "{{ twilio_account_sid }}"
+    auth_token: "{{ twilio_auth_token }}"
+    from_number: "{{ twilio_from_number }}"
+    to_number: "{{ twilio_to_number }}"
+  delegate_to: localhost
+  when: twilio_message is defined
