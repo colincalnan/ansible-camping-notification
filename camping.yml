@@ -5,3 +5,5 @@
   roles:
     - camping
   gather_facts: no
+  collections:
+    - community.general
