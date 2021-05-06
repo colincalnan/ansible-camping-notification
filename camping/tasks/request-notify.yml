@@ -19,11 +19,11 @@
   debug:
     msg: "Response: {{ response }}"
 
-- name: loop debug
-  debug:
-    msg: item.value.UnitTypes {{ item.value.UnitTypes }}
-  when: item.value.Available is true
-  with_items: "{{ response.json.SelectedPlace.Facilities | dict2items }}"
+# - name: loop debug
+#   debug:
+#     msg: item.value.UnitTypes {{ item.value.UnitTypes }}
+#   when: item.value.Available is true
+#   with_items: "{{ response.json.SelectedPlace.Facilities | dict2items }}"
 
 - name: set some facts
   block:
