@@ -2,6 +2,7 @@
 #
 - name: Do the camping things
   hosts: localhost
+  connection: local
   roles:
     - camping
   gather_facts: no
