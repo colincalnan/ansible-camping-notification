@@ -6,5 +6,7 @@
   roles:
     - camping
   gather_facts: no
+  vars_files: 
+    - vault.enc
   collections:
     - community.general
