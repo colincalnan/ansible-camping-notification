@@ -1,5 +1,5 @@
 {% for unit in item.value.UnitTypes | dict2items %}
-{% if unit.value.Available and not unit.value.AvailableFiltered and unit.value.AvailableCount > 0 %}
-{{ unit.value.AvailableCount }} {{ unit.value.Name }} spots available in {{ item.value.Name }} at {{response.json.SelectedPlace.Name}}
+{% if unit.value.Available and unit.value.AvailableFiltered and unit.value.AvailableCount > 0 %}
+{{ unit.value.AvailableCount }} {{ unit.value.Name }} spots available in {{ item.value.Name }} at {{response.json.SelectedPlace.Name}} for {{ number_of_nights }} nights, starting {{ start_date }}.
 {%endif %}
 {% endfor %}

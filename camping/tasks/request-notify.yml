@@ -19,6 +19,12 @@
   debug:
     msg: "Response: {{ response }}"
 
+- name: loop debug
+  debug:
+    msg: item.value.UnitTypes {{ item.value.UnitTypes }}
+  when: item.value.Available is true
+  with_items: "{{ response.json.SelectedPlace.Facilities | dict2items }}"
+
 - name: set some facts
   block:
     - name: "set facts"
@@ -34,7 +40,7 @@
   when: twilio_message is defined
 
 - name: Send twilio message
-  community.general.twilio:
+  twilio:
     msg: "{{ twilio_message }}"
     account_sid: "{{ twilio_account_sid }}"
     auth_token: "{{ twilio_auth_token }}"
