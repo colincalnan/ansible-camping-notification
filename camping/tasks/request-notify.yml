@@ -30,7 +30,7 @@
     - name: "set facts"
       set_fact:
         twilio_message: "{{ lookup('template', 'templates/message.j2') }}"
-      when: item.value.Available is true
+      when: item.value.Available == true
       with_items: "{{ response.json.SelectedPlace.Facilities | dict2items }}"
   when: response.json.SelectedPlace.Facilities is defined
 
