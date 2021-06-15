@@ -49,49 +49,33 @@
   delegate_to: localhost
   when: twilio_message is defined
 
-- name: Get current job template schedule
-  uri:
-    url: "{{ awx_url }}/api/v2/job_templates/{{ awx_job_template_id}}/schedules/"
-    method: GET
-    user: colincalnan
-    password: XDtyPnLf2Z
-    force_basic_auth: yes
-    headers: 
-      Content-Type: "application/json"
-    status_code: 200
-    validate_certs: no
-  register: schedule
-  when: twilio_message is defined
+# - name: Get current job template schedule
+#   uri:
+#     url: "{{ awx_url }}/api/v2/job_templates/{{ awx_job_template_id}}/schedules/"
+#     method: GET
+#     user: colincalnan
+#     password: XDtyPnLf2Z
+#     force_basic_auth: yes
+#     headers: 
+#       Content-Type: "application/json"
+#     status_code: 200
+#     validate_certs: no
+#   register: schedule
+#   when: twilio_message is defined
 
-- name: Deactivate the job template when a message is sent
-  uri:
-    url: "{{ awx_url }}/api/v2/schedules/{{ schedule.json.results[0].id }}/"
-    method: PATCH
-    headers: 
-      Content-Type: "application/json"
-    status_code: 200
-    user: "{{ awx_username }}"
-    password: "{{ awx_password }}"
-    force_basic_auth: yes
-    validate_certs: no
-    body:
-      enabled: false
-    body_format: json
-  register: deactivate
-  when: twilio_message is defined
-
-
-# - name: Loop block
-#   include_tasks: request-notify.yml
-#   loop: "{{ campsites }}"
-#   loop_control:
-#     loop_var: campsite
-
-# {% if js['SelectedPlace']['Available']:
-#     for facility_index in js['SelectedPlace']['Facilities']:
-#         facility = js['SelectedPlace']['Facilities'][facility_index]
-#         if facility['Available']:
-#             for unit_type_index in facility['UnitTypes']:
-#                 unit_type = facility['UnitTypes'][unit_type_index]
-#                 if unit_type['Available'] and not  unit_type['AvailableFiltered'] and unit_type['AvailableCount'] > 0:
-#                     print(f"{unit_type['AvailableCount']:d} '{unit_type['Name']}' spots ({facility['Name']}) available at '{js['SelectedPlace']['Name']}'")
+# - name: Deactivate the job template when a message is sent
+#   uri:
+#     url: "{{ awx_url }}/api/v2/schedules/{{ schedule.json.results[0].id }}/"
+#     method: PATCH
+#     headers: 
+#       Content-Type: "application/json"
+#     status_code: 200
+#     user: "{{ awx_username }}"
+#     password: "{{ awx_password }}"
+#     force_basic_auth: yes
+#     validate_certs: no
+#     body:
+#       enabled: false
+#     body_format: json
+#   register: deactivate
+#   when: twilio_message is defined
